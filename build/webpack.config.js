@@ -1,5 +1,7 @@
 const path = require('path')
+const webpack = require('webpack')
 
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const UglifyjsPlugin = require('uglifyjs-webpack-plugin')
 const HtmlPlugin = require('html-webpack-plugin')
 const MinifyPlugin = require("babel-minify-webpack-plugin");
@@ -8,17 +10,27 @@ module.exports = {
   context: path.resolve(__dirname, '../'),
   mode: 'production',
 
-  entry: './src/main.js',
+  entry: {
+    app: './src/main.js'
+  },
 
   output: {
-    path: path.resolve(__dirname, '../dist')
+    path: path.resolve(__dirname, '../dist'),
+    filename: '[name].[hash:7].js'
+  },
+
+  devtool: 'inline-source-map',
+
+  devServer: {
+    contentBase: false,
+    hot: true
   },
 
   module: {
     rules: [
       {
         test: /\.(js|jsx)?$/,
-        exclude: /node_modules/,
+        include: path.resolve(__dirname, '../src'),
         loader: 'babel-loader',
         query: {
           presets: [
@@ -35,10 +47,16 @@ module.exports = {
   },
 
   plugins: [
+    new webpack.ProgressPlugin(),
+
+    new CleanWebpackPlugin(),
+
     new HtmlPlugin({
-      template: './src/index.html',
+      template: path.resolve(__dirname, '../src/index.html'),
       minify: true
     }),
+
+    new webpack.HotModuleReplacementPlugin(),
 
     new MinifyPlugin(),
 
@@ -46,6 +64,7 @@ module.exports = {
       uglifyOptions: {
         compress: true
       },
+      cache: true,
       parallel: true
     }),
 
