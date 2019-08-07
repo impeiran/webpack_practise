@@ -6,6 +6,7 @@ const UglifyjsPlugin = require('uglifyjs-webpack-plugin')
 const HtmlPlugin = require('html-webpack-plugin')
 const MinifyPlugin = require("babel-minify-webpack-plugin");
 
+
 module.exports = {
   context: path.resolve(__dirname, '../'),
   mode: 'production',
@@ -17,13 +18,6 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, '../dist'),
     filename: '[name].[hash:7].js'
-  },
-
-  devtool: 'inline-source-map',
-
-  devServer: {
-    contentBase: false,
-    hot: true
   },
 
   module: {
@@ -56,17 +50,8 @@ module.exports = {
       minify: true
     }),
 
-    new webpack.HotModuleReplacementPlugin(),
 
-    new MinifyPlugin(),
-
-    new UglifyjsPlugin({
-      uglifyOptions: {
-        compress: true
-      },
-      cache: true,
-      parallel: true
-    }),
+    // new MinifyPlugin(),
 
   ]
 }
