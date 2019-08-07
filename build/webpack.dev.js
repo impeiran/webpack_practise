@@ -1,20 +1,36 @@
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const commonConfig = require('./webpack.common')
+const CONFIG = require('../config')
 
-console.log(process.env.NODE_ENV)
+const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 
 module.exports = merge(commonConfig, {
-    mode: 'development',
-    devtool: 'inline-source-map',
+  mode: 'development',
+  devtool: 'cheap-module-eval-source-map',
 
-    devServer: {
-        contentBase: false,
-        hot: true,
-        port: '9001'
-    },
+  devServer: {
+    contentBase: false,
+    hot: true,
+    compress: true,
 
-    plugins: [
-        new webpack.HotModuleReplacementPlugin(),
-    ]
+    host: CONFIG.dev.host || 'localhost',
+    port: CONFIG.dev.port,
+    
+    quiet: true,
+    clientLogLevel: 'warning',
+    overlay: true
+  },
+
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+
+    new webpack.NamedModulesPlugin(),
+
+    new FriendlyErrorsPlugin({
+      compilationSuccessInfo: {
+        messages: [`Your application is running successfully`],
+      }
+    })
+  ]
 })
