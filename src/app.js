@@ -2,7 +2,7 @@ import React from 'react'
 import './app.scss'
 
 const App = props => {
-  console.log('hahah)
+  console.log(`66`)
   return (
     <h1>hello react!!66</h1>
   )

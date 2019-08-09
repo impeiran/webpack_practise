@@ -7,7 +7,7 @@ const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 
 module.exports = merge(commonConfig, {
   mode: 'development',
-  // devtool: 'cheap-module-eval-source-map',
+  devtool: 'cheap-module-eval-source-map',
 
   devServer: {
     contentBase: false,
@@ -26,7 +26,6 @@ module.exports = merge(commonConfig, {
     new webpack.HotModuleReplacementPlugin(),
 
     new webpack.NamedModulesPlugin(),
-    // new webpack.NoEmitOnErrorsPlugin(),
 
     new FriendlyErrorsPlugin({
       compilationSuccessInfo: {

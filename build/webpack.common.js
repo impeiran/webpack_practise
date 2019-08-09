@@ -22,18 +22,8 @@ module.exports = {
       // babel loader
       {
         test: /\.(js|jsx)?$/,
-        include: path.resolve(__dirname, '../src'),
-        loader: 'babel-loader',
-        query: {
-          presets: [
-            '@babel/preset-react', 
-            ['@babel/preset-env', {
-              "targets": {
-                "browsers": ["> 1%", "last 2 versions", "not ie <= 8"]
-              }
-            }]
-          ]  
-        }
+        exclude: /node_modules/,
+        loader: 'babel-loader'
       },
 
       // sass loader
@@ -76,7 +66,18 @@ module.exports = {
 
     new HtmlPlugin({
       template: path.resolve(__dirname, '../src/index.html'),
-      minify: true
+      minify: {
+        removeComments: true,
+          collapseWhitespace: true,
+          removeRedundantAttributes: true,
+          useShortDoctype: true,
+          removeEmptyAttributes: true,
+          removeStyleLinkTypeAttributes: true,
+          keepClosingSlash: true,
+          minifyJS: true,
+          minifyCSS: true,
+          minifyURLs: true
+      }
     })
   ]
 }
