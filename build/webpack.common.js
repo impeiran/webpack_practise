@@ -4,9 +4,12 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlPlugin = require('html-webpack-plugin')
 const utils = require('./utils')
 
+const resolve = (target) => {
+  return path.resolve(__dirname, target)
+}
 
 module.exports = {
-  context: path.resolve(__dirname, '../'),
+  context: resolve('../'),
   mode: 'production',
 
   entry: {
@@ -14,7 +17,7 @@ module.exports = {
   },
 
   output: {
-    path: path.resolve(__dirname, '../dist'),
+    path: resolve('../dist'),
     filename: '[name].js'
   },
 
@@ -59,7 +62,7 @@ module.exports = {
     new CleanWebpackPlugin(),
 
     new HtmlPlugin({
-      template: path.resolve(__dirname, '../src/index.html'),
+      template: resolve('../src/index.html'),
       minify: {
         removeComments: true,
         collapseWhitespace: true,

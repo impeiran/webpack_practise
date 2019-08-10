@@ -1,3 +1,5 @@
+const miniCssExtractPlugin = require('mini-css-extract-plugin')
+
 const styleLoader = {
   loader: 'style-loader'
 }
@@ -16,11 +18,13 @@ const postCssLoader = {
   }
 }
 
+const devMode = process.env.NODE_ENV !== 'production'
+
 exports.genCssLoader = (loaderName, loaderOption) => {
   loaderOption = loaderOption || {}
 
-  let loaders = [
-    styleLoader,
+  const loaders = [
+    devMode ? styleLoader : miniCssExtractPlugin.loader,
     cssLoader,
     postCssLoader
   ]
