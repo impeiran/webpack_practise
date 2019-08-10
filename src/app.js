@@ -2,7 +2,7 @@ import React from 'react'
 import './app.scss'
 
 const App = props => {
-  console.log(`66`)
+  console.log(process.env.NODE_ENV)
   return (
     <div>
       <main className="flex">

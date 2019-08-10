@@ -1,8 +1,9 @@
 const path = require('path')
 const webpack = require('webpack')
-
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlPlugin = require('html-webpack-plugin')
+const utils = require('./utils')
+
 
 module.exports = {
   context: path.resolve(__dirname, '../'),
@@ -29,22 +30,13 @@ module.exports = {
       // sass loader
       {
         test: /\.(scss|sass)$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'postcss-loader',
-          'sass-loader'
-        ]
+        use: utils.genCssLoader('sass-loader')
       },
 
       // css loader
       {
         test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'postcss-loader'
-        ]
+        use: utils.genCssLoader()
       },
 
       // media loader
