@@ -1,3 +1,10 @@
 h1 {
     color: #128fdc;
 }
+
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translate(0, 50%);
+}

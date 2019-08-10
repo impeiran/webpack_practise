@@ -23,15 +23,16 @@ module.exports = {
       {
         test: /\.(js|jsx)?$/,
         exclude: /node_modules/,
-        loader: 'babel-loader'
+        use: 'babel-loader'
       },
 
       // sass loader
       {
         test: /\.(scss|sass)$/,
-        loader: [
+        use: [
           'style-loader',
           'css-loader',
+          'postcss-loader',
           'sass-loader'
         ]
       },
@@ -39,9 +40,10 @@ module.exports = {
       // css loader
       {
         test: /\.css$/,
-        loader: [
+        use: [
           'style-loader',
-          'css-loader'
+          'css-loader',
+          'postcss-loader'
         ]
       },
 
@@ -68,15 +70,15 @@ module.exports = {
       template: path.resolve(__dirname, '../src/index.html'),
       minify: {
         removeComments: true,
-          collapseWhitespace: true,
-          removeRedundantAttributes: true,
-          useShortDoctype: true,
-          removeEmptyAttributes: true,
-          removeStyleLinkTypeAttributes: true,
-          keepClosingSlash: true,
-          minifyJS: true,
-          minifyCSS: true,
-          minifyURLs: true
+        collapseWhitespace: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: true
       }
     })
   ]
