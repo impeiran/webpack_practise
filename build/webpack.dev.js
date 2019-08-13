@@ -22,17 +22,11 @@ module.exports = merge(commonConfig, {
     overlay: true
   },
 
-  module: {
-    rules: {
-
-    }
+  optimization: {
+    nodeEnv: 'development'
   },
 
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env': JSON.stringify({'NODE_ENV': '"development"'})
-    }),
-
     new webpack.HotModuleReplacementPlugin(),
 
     new webpack.NamedModulesPlugin(),

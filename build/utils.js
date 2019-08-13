@@ -1,3 +1,5 @@
+const path = require('path')
+const CONFIG = require('../config')
 const miniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const styleLoader = {
@@ -37,4 +39,10 @@ exports.genCssLoader = (loaderName, loaderOption) => {
   })
 
   return loaders
+}
+
+exports.assetsPath = (name) => {
+  return devMode
+    ? path.posix.join(CONFIG.dev.assetsSubDirectory, name)
+    : path.posix.join(CONFIG.prod.assetsSubDirectory, name)   
 }

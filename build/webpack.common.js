@@ -10,7 +10,6 @@ const resolve = (target) => {
 
 module.exports = {
   context: resolve('../'),
-  mode: 'production',
 
   entry: {
     app: './src/main.js'
