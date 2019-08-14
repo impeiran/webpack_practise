@@ -31,7 +31,7 @@ module.exports = merge(commonConfig, {
         enforce: 'pre',
         options: {
           formatter: require('eslint-friendly-formatter'),
-          emitWarning: false
+          emitWarning: true
         }
       }
     ]

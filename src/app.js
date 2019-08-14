@@ -4,6 +4,7 @@ import './app.scss'
 
 const App = props => {
   log('666')
+  console.log(props)
   return (
     <div>
       <main className="flex">
