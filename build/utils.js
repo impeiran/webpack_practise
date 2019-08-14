@@ -21,6 +21,7 @@ const postCssLoader = {
 }
 
 const devMode = process.env.NODE_ENV !== 'production'
+console.log(devMode)
 
 exports.genCssLoader = (loaderName, loaderOption) => {
   loaderOption = loaderOption || {}
@@ -38,11 +39,12 @@ exports.genCssLoader = (loaderName, loaderOption) => {
     }, loaderOption)
   })
 
+  console.log(loaders)
   return loaders
 }
 
 exports.assetsPath = (name) => {
   return devMode
     ? path.posix.join(CONFIG.dev.assetsSubDirectory, name)
-    : path.posix.join(CONFIG.prod.assetsSubDirectory, name)   
+    : path.posix.join(CONFIG.prod.assetsSubDirectory, name)
 }

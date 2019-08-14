@@ -3,18 +3,19 @@
     "browser": true
   },
   "parser": "babel-eslint",
-  "parserOptions": {
-    "ecmaFeatures": {
-      "experimentalObjectRestSpread": true,
-      "jsx": true
-    },
-    "sourceType": "module",
-    "ecmaVersion": 7
+  
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   },
 
-  "extends": "standard",
+  "extends": [
+    "plugin:react/recommended",
+    "standard"
+  ],
 
-  "plugins": [
-    "react"
-  ]
+  "rules": {
+    "no-debugger": "off"
+  }
 }
