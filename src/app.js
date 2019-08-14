@@ -1,13 +1,9 @@
 import React from 'react'
-import _ from 'lodash'
+import { log } from './test'
 import './app.scss'
 
 const App = props => {
-  let test = {}
-  if (_.isEmpty(test)) {
-    console.log('666')
-  }
-
+  log('666')
   return (
     <div>
       <main className="flex">

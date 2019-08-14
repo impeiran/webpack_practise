@@ -19,6 +19,9 @@ module.exports = merge(commonConfig, {
   optimization: {
     nodeEnv: 'production',
 
+    // providedExports: true,
+    // sideEffects: true,
+
     // 分割chunk
     splitChunks: {
       chunks: 'async',
@@ -26,15 +29,8 @@ module.exports = merge(commonConfig, {
       name: true,
       cacheGroups: {
         // 分割出第三方库
-        react: {
-          test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
-          name: 'react',
-          filename: utils.assetsPath('js/[name].[contenthash].js'),
-          chunks: 'all'
-        },
-
         vendors: {
-          test: /[\\/]node_modules[\\/](?!react|react-dom).*[\\/]/,
+          test: /[\\/]node_modules[\\/]/,
           name: 'vendor',
           filename: utils.assetsPath('js/[name].[contenthash].js'),
           chunks: 'all'
