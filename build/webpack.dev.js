@@ -16,10 +16,25 @@ module.exports = merge(commonConfig, {
 
     host: CONFIG.dev.host || 'localhost',
     port: CONFIG.dev.port,
-    
+
     quiet: true,
     clientLogLevel: 'warning',
     overlay: true
+  },
+
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        loader: 'eslint-loader',
+        enforce: 'pre',
+        options: {
+          formatter: require('eslint-friendly-formatter'),
+          emitWarning: false
+        }
+      }
+    ]
   },
 
   optimization: {
@@ -33,7 +48,7 @@ module.exports = merge(commonConfig, {
 
     new FriendlyErrorsPlugin({
       compilationSuccessInfo: {
-        messages: [`Your application is running successfully`],
+        messages: [`Your application is running successfully`]
       }
     })
   ]
