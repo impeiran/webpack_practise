@@ -1,6 +1,8 @@
+const path = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const commonConfig = require('./webpack.common')
+const utils = require('./utils')
 const CONFIG = require('../config')
 
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
@@ -26,7 +28,7 @@ module.exports = merge(commonConfig, {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        include: '../src',
+        include: path.resolve(__dirname, '../src'),
         loader: 'eslint-loader',
         enforce: 'pre',
         options: {
@@ -48,7 +50,11 @@ module.exports = merge(commonConfig, {
 
     new FriendlyErrorsPlugin({
       compilationSuccessInfo: {
-        messages: [`Your application is running successfully`]
+        messages: [
+          'Your application is successfully running at: \n\n' +
+          `     - local   : http://localhost:${CONFIG.dev.port}\n` +
+          `     - network : http://${utils.getIPAddress()}:${CONFIG.dev.port}\n`
+        ]
       }
     })
   ]

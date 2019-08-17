@@ -1,6 +1,6 @@
 module.exports = {
   dev: {
-    port: 8080,
+    port: 9999,
     host: '0.0.0.0',
 
     cssSourceMap: true
