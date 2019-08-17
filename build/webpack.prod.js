@@ -1,7 +1,7 @@
 process.env.NODE_ENV = 'production'
 
 const path = require('path')
-// const webpack = require('webpack')
+const webpack = require('webpack')
 const merge = require('webpack-merge')
 const utils = require('./utils')
 const commonConfig = require('./webpack.common')
@@ -39,8 +39,12 @@ module.exports = merge(commonConfig, {
   },
 
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': JSON.stringify(process.env.NODE_ENV)
+    }),
+
     new MiniCssExtractPlugin({
-      filename: utils.assetsPath('css/[name].[contenthash].css')
+      filename: '[name].[contenthash].css'
     })
   ]
 })

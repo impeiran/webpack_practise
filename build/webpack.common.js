@@ -10,6 +10,7 @@ const resolve = (target) => {
 
 module.exports = {
   context: resolve('../'),
+  mode: 'production',
 
   entry: {
     app: './src/main.js'
@@ -61,12 +62,18 @@ module.exports = {
     new CleanWebpackPlugin(),
 
     new HtmlPlugin({
-      filename: 'index.html',
       template: resolve('../src/index.html'),
       minify: {
         removeComments: true,
         collapseWhitespace: true,
-        removeAttributeQuotes: true
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: true
       }
     })
   ]

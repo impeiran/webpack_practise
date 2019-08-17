@@ -1,10 +1,7 @@
 import React from 'react'
-import { log } from './test'
 import './app.scss'
 
 const App = props => {
-  log('666')
-  console.log(props)
   return (
     <div>
       <main className="flex">

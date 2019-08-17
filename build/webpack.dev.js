@@ -16,7 +16,7 @@ module.exports = merge(commonConfig, {
 
     host: CONFIG.dev.host || 'localhost',
     port: CONFIG.dev.port,
-
+    
     quiet: true,
     clientLogLevel: 'warning',
     overlay: true
@@ -42,13 +42,17 @@ module.exports = merge(commonConfig, {
   },
 
   plugins: [
+    // new webpack.DefinePlugin({
+    //   'process.env.NODE_ENV': '"development"'
+    // }),
+
     new webpack.HotModuleReplacementPlugin(),
 
     new webpack.NamedModulesPlugin(),
 
     new FriendlyErrorsPlugin({
       compilationSuccessInfo: {
-        messages: [`Your application is running successfully`]
+        messages: [`Your application is running successfully`],
       }
     })
   ]

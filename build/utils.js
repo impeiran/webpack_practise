@@ -21,7 +21,6 @@ const postCssLoader = {
 }
 
 const devMode = process.env.NODE_ENV !== 'production'
-console.log(devMode)
 
 exports.genCssLoader = (loaderName, loaderOption) => {
   loaderOption = loaderOption || {}
@@ -39,7 +38,6 @@ exports.genCssLoader = (loaderName, loaderOption) => {
     }, loaderOption)
   })
 
-  console.log(loaders)
   return loaders
 }
 
